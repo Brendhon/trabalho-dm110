@@ -1,0 +1,121 @@
+{
+	"info": {
+		"_postman_id": "45313c42-8c93-4e1e-8e4b-bd5d3e4d1ce3",
+		"name": "Trabalho DM110",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8265148"
+	},
+	"item": [
+		{
+			"name": "Purchase",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"invoiceCode\": \"2TURA611\",\r\n    \"order\": \"Example Order\",\r\n    \"cpf\": \"12345678901\",\r\n    \"dateTime\": \"2020-04-04 12:12:12\",\r\n    \"value\": 99.99\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/trabalho-web/api/purchase/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trabalho-web",
+								"api",
+								"purchase",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/trabalho-web/api/purchase/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trabalho-web",
+								"api",
+								"purchase",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Message by Code",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/trabalho-web/api/purchase/2TURA611",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trabalho-web",
+								"api",
+								"purchase",
+								"2TURA611"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"invoiceCode\": \"2TURA611\",\r\n    \"order\": \"Example Order\",\r\n    \"cpf\": \"12345678901\",\r\n    \"dateTime\": \"2020-08-04 14:14:14\",\r\n    \"value\": 79.99\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/trabalho-web/api/purchase/2TURA611",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trabalho-web",
+								"api",
+								"purchase",
+								"2TURA611"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
