@@ -29,15 +29,19 @@ public class PurchaseBean implements PurchaseLocal {
 
 	@Override
 	public void save(PurchaseTO purchase) {
+		// Create entity
 		PurchaseEntity entity = new PurchaseEntity();
 		entity.setCpf(purchase.getCpf());
 		entity.setDateTime(purchase.getDateTime());
 		entity.setInvoiceCode(purchase.getInvoiceCode());
 		entity.setOrder(purchase.getOrder());
-		entity.setValue(purchase.getValue());		
+		entity.setValue(purchase.getValue());	
+		
+		// Save
 		em.persist(entity);
 		
-
+		// Send msg to queue
+		queueSender.sendTextMessage(purchase.getInvoiceCode());
 	}
 
 	@Override
@@ -51,11 +55,6 @@ public class PurchaseBean implements PurchaseLocal {
 	@Override
 	public PurchaseTO getByInvoiceCode(String code) {
 		log.info("Get by invoice code: " + code);
-		
-		String msg = "Purchase Session Bean: " + code + " !";
-		//send the message to somewhere
-		queueSender.sendTextMessage(msg);
-
 		// Get purchase by invoice code
 		TypedQuery<PurchaseEntity> query = em
 				.createQuery("from PurchaseEntity s where s.invoiceCode = :code", PurchaseEntity.class)

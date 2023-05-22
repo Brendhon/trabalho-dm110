@@ -21,7 +21,7 @@ public class PurchaseClient {
 	private static final int CODE_LENGTH = 8;
 
 	// URL to make request
-	private static final String REST_URI_BASE = "http://localhost:8080/trabalho-web-1.0/api/purchase";
+	private static final String REST_URI_BASE = "http://localhost:8080/trabalho-web/api/purchase";
 
 	// Client
 	private static Client client = ClientBuilder.newClient();
