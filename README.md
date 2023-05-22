@@ -68,7 +68,7 @@ Configurar o Wildfly no Eclipse:
   - Setting Name: DM110.
   - Type: HSQL Database Engine Standalone.
   - Driver: org.hsqldb.jdbc.JDBCDriver.
-  - URL: jdbc:hsqldb:file:$caminho_completo_do_arquivo_do_banco.
+  - URL: `jdbc:hsqldb:file:$caminho_completo_do_arquivo_do_banco` (por exemplo:jdbc:hsqldb:file:/home/roberto/dm110-database/dm110.db).
   - User: dm110
   - Password: senhadm110
 - Criar a tabela PURCHASE_ENTITY com o seguinte comando:
@@ -125,13 +125,13 @@ Criando o datasource do HSQLDB no Wildfly:
   - Connection URL: (a mesma URL utilizada quando o banco foi criado) Exemplo: jdbc:hsqldb:file:/home/roberto/dm110-database/dm110.db
   - User Name: dm110
   - Password: senhadm110
-- No passo Test Connection, rolar o scroll para baixo e clicar no botão Test Connection.
+- No passo Test Connection, rolar o scroll para baixo e clicar no botão Test Connection e verificar se a conexão foi bem sucedida.
 - Clique em Next, confirmar as informações e depois em Finish.
 - Talvez seja necessário reiniciar o Wildfly.
 
 #### Configurando o Message Driven Bean (MDB)
 
-Configuração da Fila JMS no WildFly (via CLI)
+Configuração da Fila JMS no WildFly
 - Subir o servidor Wildfly.
 - Execute o arquivo `jboss-cli.bat` que está na pasta `bin` do Wildfly.
 - Execute o comando `connect`.
@@ -142,10 +142,13 @@ Configuração da Fila JMS no WildFly (via CLI)
 - Visualizar a fila criada.
 - Talvez seja necessário reiniciar o Wildfly.
 
+**Após isso a aplicação já estará pronta para ser executada.**
+
 ## Observações  
 - Caso tenha alteração no JNDI Name, será necessário alterar persistence.xml que se encontra dentro do `trabalho-ejb/src/main/resources/META-INF`.
 - Em alguns casos pode ocorrer da aplicação se localizar no endereço http://127.0.0.1:8080/trabalho-web/ e outras vezes em  http://127.0.0.1:8080/trabalho-web-1.0/
 - Foi anexado junto ao trabalho a collection do postman para testes: `Trabalho DM110.postman_collection.json`
+- Para verificar se os registros de auditoria estão sendo salvos, basta acessar a pasta `hsqldb` e executar o comando `java -jar hsqldb.jar` e executar o comando SQL `select * from AUDIT_ENTITY;`
 
 ---
 
