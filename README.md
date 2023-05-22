@@ -144,6 +144,7 @@ Configuração da Fila JMS no WildFly (via CLI)
 
 ## Observações  
 - Caso tenha alteração no JNDI Name, será necessário alterar persistence.xml que se encontra dentro do `trabalho-ejb/src/main/resources/META-INF`.
+- Em alguns casos pode ocorrer da aplicação se localizar no endereço http://127.0.0.1:8080/trabalho-web/ e outras vezes em  http://127.0.0.1:8080/trabalho-web-1.0/
 
 ---
 
