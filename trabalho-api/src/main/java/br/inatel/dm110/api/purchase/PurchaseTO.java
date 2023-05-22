@@ -60,7 +60,8 @@ public class PurchaseTO {
     /**
      * @return String representation of PurchaseTO
      */
-    public String showAttr() {
+    @Override
+    public String toString() {
         return "Invoice Code: " + this.invoiceCode + "\n" +
                "Order: " + this.order + "\n" +
                "CPF: " + this.cpf + "\n" +

@@ -21,7 +21,7 @@ public class PurchaseClient {
 	private static final int CODE_LENGTH = 8;
 
 	// URL to make request
-	private static final String REST_URI_BASE = "http://localhost:8080/trabalho-web/api/purchase";
+	private static final String REST_URI_BASE = "http://localhost:8080/trabalho-web-1.0/api/purchase";
 
 	// Client
 	private static Client client = ClientBuilder.newClient();
@@ -39,34 +39,32 @@ public class PurchaseClient {
 		purchase.setCpf("12345678901");
 		purchase.setDateTime(time);
 		purchase.setValue(99.99);
-		
-		System.out.println("Purchase \n" + purchase.showAttr());
 
 		// Create
-		System.out.println("\nResult from POST: " + create(purchase));
+		System.out.println("\nResult from POST -> " + create(purchase));
 
 		// Get by valid code
-		System.out.println("\nResult from GET 0 \n" + getByCode(invoiceCode).showAttr());
+		System.out.println("\nResult from GET -> \n" + getByCode(invoiceCode).toString());
 
 		// Get all
-		 System.out.println("\nResult from GET ALL: " + getAll().size());
+		 System.out.println("\nResult from GET ALL -> " + getAll().size());
 
 		// New Purchase
 		PurchaseTO newPurchase = new PurchaseTO();
 		newPurchase.setInvoiceCode(invoiceCode);
 		newPurchase.setOrder("Example new Order");
-		newPurchase.setCpf("12345678901");
+		newPurchase.setCpf("123.456.789-01");
 		newPurchase.setDateTime(time);
 		newPurchase.setValue(150.99);
 
 		// Update
-		System.out.println("Update: " + update(newPurchase.getInvoiceCode(), newPurchase));
+		System.out.println("Update -> " + update(newPurchase.getInvoiceCode(), newPurchase));
 	}
 
 	private static String update(String code, PurchaseTO newPurchase) {
-		System.out.println("Entity.json: " + Entity.json(newPurchase));
-
-		Response resp = client.target(REST_URI_BASE).path(String.valueOf(code)).request(MediaType.APPLICATION_JSON)
+		Response resp = client.target(REST_URI_BASE)
+				.path(String.valueOf(code))
+				.request(MediaType.APPLICATION_JSON)
 				.put(Entity.json(newPurchase));
 
 		return "Status: " + resp.getStatus();

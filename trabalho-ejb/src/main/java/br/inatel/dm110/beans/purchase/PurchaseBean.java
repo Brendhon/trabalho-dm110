@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -20,6 +21,9 @@ public class PurchaseBean implements PurchaseLocal {
 
 	private static Logger log = Logger.getLogger(PurchaseBean.class.getName());
 
+	@EJB
+	private PurchaseQueueSender queueSender;
+	
 	@PersistenceContext(unitName = "purchase_pu")
 	private EntityManager em;
 
@@ -32,6 +36,8 @@ public class PurchaseBean implements PurchaseLocal {
 		entity.setOrder(purchase.getOrder());
 		entity.setValue(purchase.getValue());		
 		em.persist(entity);
+		
+
 	}
 
 	@Override
@@ -45,6 +51,10 @@ public class PurchaseBean implements PurchaseLocal {
 	@Override
 	public PurchaseTO getByInvoiceCode(String code) {
 		log.info("Get by invoice code: " + code);
+		
+		String msg = "Purchase Session Bean: " + code + " !";
+		//send the message to somewhere
+		queueSender.sendTextMessage(msg);
 
 		// Get purchase by invoice code
 		TypedQuery<PurchaseEntity> query = em
