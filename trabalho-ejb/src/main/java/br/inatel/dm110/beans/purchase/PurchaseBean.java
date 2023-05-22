@@ -25,13 +25,12 @@ public class PurchaseBean implements PurchaseLocal {
 
 	@Override
 	public void save(PurchaseTO purchase) {
-		log.info("Save" + purchase.toString());
 		PurchaseEntity entity = new PurchaseEntity();
-		entity.setCPF(purchase.getCPF());
+		entity.setCpf(purchase.getCpf());
 		entity.setDateTime(purchase.getDateTime());
 		entity.setInvoiceCode(purchase.getInvoiceCode());
 		entity.setOrder(purchase.getOrder());
-		entity.setValue(purchase.getValue());
+		entity.setValue(purchase.getValue());		
 		em.persist(entity);
 	}
 
@@ -62,7 +61,7 @@ public class PurchaseBean implements PurchaseLocal {
 
 	@Override
 	public void update(String code, PurchaseTO newPurchase) {
-		log.info("Update: " + code + " with " + newPurchase.toString());
+		log.info("Update: " + code);
 
 		// Get purchase by invoice code
 		TypedQuery<PurchaseEntity> query = em
@@ -73,7 +72,7 @@ public class PurchaseBean implements PurchaseLocal {
 		List<PurchaseEntity> purchases = query.getResultList();
 		if (purchases.size() > 0) {
 			PurchaseEntity purchase = purchases.get(0);
-			purchase.setCPF(newPurchase.getCPF());
+			purchase.setCpf(newPurchase.getCpf());
 			purchase.setDateTime(newPurchase.getDateTime());
 			purchase.setInvoiceCode(newPurchase.getInvoiceCode());
 			purchase.setOrder(newPurchase.getOrder());
@@ -85,7 +84,7 @@ public class PurchaseBean implements PurchaseLocal {
 	private List<PurchaseTO> toCollectionAPIModel(List<PurchaseEntity> purchaseList) {
 		return purchaseList.stream().map(item -> {
 			PurchaseTO pu = new PurchaseTO();
-			pu.setCPF(item.getCPF());
+			pu.setCpf(item.getCpf());
 			pu.setDateTime(item.getDateTime());
 			pu.setInvoiceCode(item.getInvoiceCode());
 			pu.setOrder(item.getOrder());

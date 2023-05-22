@@ -1,26 +1,24 @@
 package br.inatel.dm110.api.purchase;
 
-import java.time.LocalDateTime;
-
 public class PurchaseTO {
     private String invoiceCode;
     private String order;
-    private String CPF;
-    private LocalDateTime dateTime;
+    private String cpf;
+    private String dateTime;
     private double value;
 
     public PurchaseTO() {}
     
-    public PurchaseTO(String invoiceCode, String order, String CPF, LocalDateTime dateTime, double value) {
+    public PurchaseTO(String invoiceCode, String order, String cpf, String dateTime, double value) {
         this.invoiceCode = invoiceCode;
         this.order = order;
-        this.CPF = CPF;
+        this.cpf = cpf;
         this.dateTime = dateTime;
         this.value = value;
     }
 
     public String getInvoiceCode() {
-        return invoiceCode;
+        return this.invoiceCode;
     }
 
     public void setInvoiceCode(String invoiceCode) {
@@ -28,34 +26,45 @@ public class PurchaseTO {
     }
 
     public String getOrder() {
-        return order;
+        return this.order;
     }
 
     public void setOrder(String order) {
         this.order = order;
     }
+    
+    public String getCpf() {
+		return cpf;
+	}
 
-    public String getCPF() {
-        return CPF;
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public String getDateTime() {
+        return this.dateTime;
     }
 
-    public void setCPF(String CPF) {
-        this.CPF = CPF;
-    }
-
-    public LocalDateTime getDateTime() {
-        return dateTime;
-    }
-
-    public void setDateTime(LocalDateTime dateTime) {
+    public void setDateTime(String dateTime) {
         this.dateTime = dateTime;
     }
 
     public double getValue() {
-        return value;
+        return this.value;
     }
 
     public void setValue(double value) {
         this.value = value;
+    }
+
+    /**
+     * @return String representation of PurchaseTO
+     */
+    public String showAttr() {
+        return "Invoice Code: " + this.invoiceCode + "\n" +
+               "Order: " + this.order + "\n" +
+               "CPF: " + this.cpf + "\n" +
+               "Date Time: " + this.dateTime + "\n" +
+               "Value: " + this.value;
     }
 }

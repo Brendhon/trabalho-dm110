@@ -120,6 +120,19 @@ Criando o datasource do HSQLDB no Wildfly:
 - Clique em Next, confirmar as informações e depois em Finish.
 - Talvez seja necessário reiniciar o Wildfly.
 
+#### Configurando o Message Driven Bean (MDB)
+
+Configuração da Fila JMS no WildFly (via CLI)
+- Subir o servidor Wildfly.
+- Execute o arquivo `jboss-cli.bat` que está na pasta `bin` do Wildfly.
+- Execute o comando `connect`.
+- Execute o comando `jms-queue add --queue-address=dm110queue --durable=true --entries=["java:/jms/queue/dm110queue"]`.
+- Acessar o console de administração do Wildfly em http://127.0.0.1:9990/
+- Acessar o menu Configuration → Subsystems → Messaging → Category → Server → default → Destinations.
+- Clicar no botão View e selecionar JMS Queue
+- Visualizar a fila criada.
+- Talvez seja necessário reiniciar o Wildfly.
+
 ## Observações  
 - Caso tenha alteração no JNDI Name, será necessário alterar persistence.xml que se encontra dentro do `trabalho-ejb/src/main/resources/META-INF`.
 

@@ -14,7 +14,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 
 	@EJB
 	private PurchaseLocal purchaseBean;
-	
+ 
 	@Override
 	public void save(PurchaseTO purchase) {
 		purchaseBean.save(purchase);

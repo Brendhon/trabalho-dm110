@@ -4,8 +4,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "PURCHASE_ENTITY", schema = "public")
@@ -18,27 +19,27 @@ public class PurchaseEntity {
     private String order;
 
     @Column(name = "CPF")
-    private String CPF;
+    private String cpf;
 
     @Column(name = "DATE_TIME")
-    private LocalDateTime dateTime;
+    private Timestamp dateTime;
 
     @Column(name = "VALUE")
     private double value;
 
     public PurchaseEntity() {}
 
-    public PurchaseEntity(String invoiceCode, String order, String CPF, LocalDateTime dateTime, double value) {
+    public PurchaseEntity(String invoiceCode, String order, String cpf, String dateTime, double value) {
         this.invoiceCode = invoiceCode;
         this.order = order;
-        this.CPF = CPF;
-        this.dateTime = dateTime;
+        this.cpf = cpf;
+        this.dateTime = Timestamp.valueOf(dateTime);
         this.value = value;
     }
 
     // Getters and setters
     public String getInvoiceCode() {
-        return invoiceCode;
+        return this.invoiceCode;
     }
 
     public void setInvoiceCode(String invoiceCode) {
@@ -46,31 +47,31 @@ public class PurchaseEntity {
     }
 
     public String getOrder() {
-        return order;
+        return this.order;
     }
 
     public void setOrder(String order) {
         this.order = order;
     }
 
-    public String getCPF() {
-        return CPF;
+    public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public String getDateTime() {
+        return this.dateTime.toString();
     }
 
-    public void setCPF(String CPF) {
-        this.CPF = CPF;
-    }
-
-    public LocalDateTime getDateTime() {
-        return dateTime;
-    }
-
-    public void setDateTime(LocalDateTime dateTime) {
-        this.dateTime = dateTime;
+    public void setDateTime(String dateTime) {
+        this.dateTime = Timestamp.valueOf(dateTime);
     }
 
     public double getValue() {
-        return value;
+        return this.value;
     }
 
     public void setValue(double value) {
