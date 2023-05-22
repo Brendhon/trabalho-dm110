@@ -9,6 +9,8 @@ public class PurchaseTO {
     private LocalDateTime dateTime;
     private double value;
 
+    public PurchaseTO() {}
+    
     public PurchaseTO(String invoiceCode, String order, String CPF, LocalDateTime dateTime, double value) {
         this.invoiceCode = invoiceCode;
         this.order = order;

@@ -1,16 +1,29 @@
 package br.inatel.dm110.entities.purchase;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
+
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "PURCHASE_ENTITY", schema = "public")
 public class PurchaseEntity {
     @Id
+    @Column(name = "INVOICE_CODE")
     private String invoiceCode;
+
+    @Column(name = "ORDER_ITEM")
     private String order;
+
+    @Column(name = "CPF")
     private String CPF;
+
+    @Column(name = "DATE_TIME")
     private LocalDateTime dateTime;
+
+    @Column(name = "VALUE")
     private double value;
 
     public PurchaseEntity() {}
