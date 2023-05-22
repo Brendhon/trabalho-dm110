@@ -23,7 +23,7 @@ public class PurchaseBean implements PurchaseLocal {
 
 	@EJB
 	private PurchaseQueueSender queueSender;
-	
+
 	@PersistenceContext(unitName = "purchase_pu")
 	private EntityManager em;
 
@@ -35,13 +35,16 @@ public class PurchaseBean implements PurchaseLocal {
 		entity.setDateTime(purchase.getDateTime());
 		entity.setInvoiceCode(purchase.getInvoiceCode());
 		entity.setOrder(purchase.getOrder());
-		entity.setValue(purchase.getValue());	
-		
+		entity.setValue(purchase.getValue());
+
 		// Save
 		em.persist(entity);
-		
+
+		// Create text message
+		String text = purchase.getInvoiceCode() + "-" + "create";
+
 		// Send msg to queue
-		queueSender.sendTextMessage(purchase.getInvoiceCode());
+		queueSender.sendTextMessage(text);
 	}
 
 	@Override
@@ -87,6 +90,12 @@ public class PurchaseBean implements PurchaseLocal {
 			purchase.setOrder(newPurchase.getOrder());
 			purchase.setValue(newPurchase.getValue());
 			em.merge(purchase);
+
+			// Create text message
+			String text = purchase.getInvoiceCode() + "-" + "update";
+
+			// Send msg to queue
+			queueSender.sendTextMessage(text);
 		}
 	}
 

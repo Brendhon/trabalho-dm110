@@ -82,6 +82,15 @@ Configurar o Wildfly no Eclipse:
   );
   ```
 - Clique em `Execute SQL`, com isso a tabela PURCHASE_ENTITY será criada.
+- Agora crie a tabela de auditoria:
+  ```sql
+  CREATE TABLE AUDIT_ENTITY (
+    ID BIGINT IDENTITY PRIMARY KEY,
+    REGISTER_CODE VARCHAR(255),
+    OPERATION VARCHAR(255),
+    CREATION_DATE TIMESTAMP
+  );
+  ```
 
 Configurando o módulo do HSQLDB no Wildfly:
 - Subir o servidor Wildfly.
@@ -135,7 +144,6 @@ Configuração da Fila JMS no WildFly (via CLI)
 
 ## Observações  
 - Caso tenha alteração no JNDI Name, será necessário alterar persistence.xml que se encontra dentro do `trabalho-ejb/src/main/resources/META-INF`.
-
 
 ---
 
