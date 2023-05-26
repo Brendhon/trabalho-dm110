@@ -154,7 +154,7 @@ Configuração da Fila JMS no WildFly
 
 ## Diagrama de Classes
 
-<img style="margin-right: 30px" src="UML.jfif" width="1200px;" alt="Avatar"/><br>
+<img style="margin-right: 30px" src="UML.png" width="1200px;" alt="Avatar"/><br>
 
 ---
 
